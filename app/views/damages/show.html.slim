@@ -1,0 +1,42 @@
+.page-title 被害の詳細
+
+/ = link_to '被害一覧', damages_path, class: 'btn btn-primary'
+
+table.table.table-hover
+  tbody
+    tr
+      th= Damage.human_attribute_name(:title)
+      td= @damage.title
+    tr
+      th= Damage.human_attribute_name(:place)
+      td= @damage.place
+    tr
+      th= Damage.human_attribute_name(:description)
+      td= simple_format(h(@damage.description), {}, sanitize: false, wrapper_tag: "div")
+    tr
+      th= Damage.human_attribute_name(:amount)
+      td= @damage.amount.to_s(:delimited)
+    tr
+      th= Damage.human_attribute_name(:image)
+      td= image_tag @damage.image if @damage.image.attached?
+    tr
+      th= Damage.human_attribute_name(:created_at)
+      td= @damage.created_at
+    tr
+      th= Damage.human_attribute_name(:updated_at)
+      td= @damage.updated_at
+
+- if @damage.user_id == current_user.id
+  = link_to '編集', edit_damage_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @damage, method: :delete, data: { confirm: "タスク「#{@damage.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+
+#map
+  javascript:
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(14);
+    });

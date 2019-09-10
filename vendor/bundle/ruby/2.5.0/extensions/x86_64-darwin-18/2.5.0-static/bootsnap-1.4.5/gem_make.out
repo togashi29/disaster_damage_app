@@ -1,0 +1,15 @@
+current directory: /Users/togashi/Desktop/projects/disaster_damage_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+/Users/togashi/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20190907-1823-tbr5w.rb extconf.rb
+creating Makefile
+
+current directory: /Users/togashi/Desktop/projects/disaster_damage_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/togashi/Desktop/projects/disaster_damage_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/togashi/Desktop/projects/disaster_damage_app/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20190907-1823-1t0y9ne/bootsnap

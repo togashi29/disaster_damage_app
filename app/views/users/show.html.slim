@@ -1,0 +1,47 @@
+.page-title ユーザーの詳細
+
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:department)
+      td= @user.department
+    tr
+      th= User.human_attribute_name(:position)
+      td= @user.position
+    tr
+      th= User.human_attribute_name(:id)
+      td= @user.id
+    tr
+      th= User.human_attribute_name(:name)
+      td= @user.name
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
+    tr
+      th= User.human_attribute_name(:created_at)
+      td= @user.created_at
+    tr
+      th= User.human_attribute_name(:updated_at)
+      td= @user.updated_at
+
+= link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @user, method: :delete, data: { confirm: "ユーザ「#{@user.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+
+.page-title.pt-5.mt-5 ユーザーが登録した被害
+table.table.table-hover
+  thead.thead-light
+    tr
+      th = Damage.human_attribute_name(:title)
+      th = Damage.human_attribute_name(:place)
+      th = Damage.human_attribute_name(:amount)
+      th =
+      th =
+    tbody
+      - @user.damages.each do |damage|
+        tr
+          td = link_to damage.title, damage_path(damage), class: 'damage-title'
+          td = damage.place
+          td = damage.amount
+          td = link_to '編集', edit_damage_path(damage), class: 'btn btn-primary'
+          td = link_to '削除', damage, method: :delete, data: { confirm: "タスク「#{damage.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

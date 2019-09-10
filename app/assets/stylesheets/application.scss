@@ -1,0 +1,145 @@
+// 以下2つは、有効にするとエラーが生じた。gemの再インストールの策を講じるもエラーが解消せず、無効のままでも支障がないため、対応保留。
+// @import "bootstrap-sprockets";
+// @import "devise_bootstrap_views";
+
+@import "bootstrap";
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+
+ // ベースフォント
+ $fz-base: 16px;
+ $ff-base: "Meiryo UI", "Meiryo", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "Noto Sans Japanese", roboto, sans-serif;
+ $ff-kgpw3: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Noto Sans Japanese", sans-serif;
+ $ff-kgpw6: "HiraKakuPro-W6", "ヒラギノ角ゴ Pro W6", "Noto Sans Japanese", sans-serif;
+ $ff-minco: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+ $ff-gothic: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+ $ff-awesome: "Font Awesome 5 Free", sans-serif;
+ $fw-base: 500;
+ $lh-base: 1.6;
+
+ // ベース色
+ $cr-m: #00cc66;
+ $cr-a: #ffb600;
+ // 背景
+ $cr-bg: #efefef;
+ // テキスト色
+ $cr-txt: #333;
+ // 透過度
+ $opacity: 0.8;
+ // フォーム
+ $cr-outline: #707070;
+ $cr-outline-on: transparent;
+ $cr-check: #3f51b5;
+ // テーブル
+ $cr-table: #707070;
+
+
+ body {
+ 	font-family: $ff-base;
+ 	font-size: $fz-base;
+ 	font-weight: $fw-base;
+ 	color: $cr-txt;
+ 	line-height: $lh-base;
+ 	-webkit-font-smoothing: antialiased;
+ 	-moz-osx-font-smoothing: grayscale;
+ 	// background: $cr-bg;
+ 	overflow-x: hidden;
+ }
+
+ a {
+ 	color: inherit;
+ 	outline: none;
+ 	text-decoration: none;
+ 	&:hover{
+ 		opacity: $opacity;
+    text-decoration: none;
+    color: inherit;
+ 	}
+ }
+
+
+.navbar{
+  background-color: #2B5797;
+  .navbar-brand{
+    font-size: 28px;
+  }
+}
+
+.page-title{
+  font-size: 25px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+
+.btn-primary{
+  background-color: #2B5797;
+  border-color: inherit;
+}
+
+table{
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+#map{
+  margin-top: 30px;
+  width: 100%;
+  height: 400px;
+}
+
+// topアクションのページ
+.top{
+  height: 100vh;
+  .container{
+    max-width: 100%;
+    height: 100vh;
+    margin: 0;
+    background-color: #2B5797;
+    .top-wrapper{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .top-title{
+        font-size: 100px ;
+        color: #fff;
+        padding-bottom: 80px;
+      }
+    }
+  }
+}
+
+// damagesアクションのページ
+.damages{
+  a.damage-title{
+    color: #2B5797;
+    font-weight: 600;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+
+// usersアクションのページ
+.users{
+  a.damage-title{
+    color: #2B5797;
+    font-weight: 600;
+  }
+}

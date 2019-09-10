@@ -1,0 +1,44 @@
+.page-title 被害一覧
+
+= link_to '被害の新規登録', new_damage_path, class: 'btn btn-primary'
+
+table.table.table-hover.index-table
+  thead.thead-light
+    tr
+      th = Damage.human_attribute_name(:title)
+      th = Damage.human_attribute_name(:place)
+      th = Damage.human_attribute_name(:amount)
+      th = User.human_attribute_name(:department)
+      th = User.human_attribute_name(:name)
+      th
+    tbody
+      - @damages.each do |damage|
+        tr
+          td = link_to damage.title, damage_path(damage), class: 'damage-title'
+          td = damage.place
+          td = damage.amount
+          td = damage.user.department
+          td = damage.user.name
+          - if damage.user_id == current_user.id
+            td = link_to '編集', edit_damage_path(damage), class: 'btn btn-primary'
+          - else
+            td =
+      tr
+        td = "合計"
+        td = "#{@total_place}箇所"
+        td = @total_amount.to_s(:delimited)
+        td =
+        td =
+        td =
+
+
+
+
+#map
+  javascript:
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
