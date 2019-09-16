@@ -42,6 +42,6 @@ table.table.table-hover
         tr
           td = link_to damage.title, damage_path(damage), class: 'damage-title'
           td = damage.place
-          td = damage.amount
+          td = damage.amount&.to_s(:delimited)
           td = link_to '編集', edit_damage_path(damage), class: 'btn btn-primary'
           td = link_to '削除', damage, method: :delete, data: { confirm: "タスク「#{damage.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

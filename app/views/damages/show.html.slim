@@ -1,7 +1,5 @@
 .page-title 被害の詳細
 
-/ = link_to '被害一覧', damages_path, class: 'btn btn-primary'
-
 table.table.table-hover
   tbody
     tr
@@ -15,7 +13,7 @@ table.table.table-hover
       td= simple_format(h(@damage.description), {}, sanitize: false, wrapper_tag: "div")
     tr
       th= Damage.human_attribute_name(:amount)
-      td= @damage.amount.to_s(:delimited)
+      td= @damage.amount&.to_s(:delimited)
     tr
       th= Damage.human_attribute_name(:image)
       td= image_tag @damage.image if @damage.image.attached?
@@ -31,12 +29,51 @@ table.table.table-hover
   = link_to '削除', @damage, method: :delete, data: { confirm: "タスク「#{@damage.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
 
+// javascript:
+//   console.log('こんにちは');
+//   console.log(#{@damage.description});
+
+
 #map
-  javascript:
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(#{raw @hash.to_json});
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(14);
+
+javascript:
+  var map;
+  let desc = #{@damage.description};
+  function initMap() {
+    var target = document.getElementById('map');
+    // 表示したいポイント
+    var point = {lat: #{@damage.latitude} , lng: #{@damage.longitude} };
+
+    map = new google.maps.Map(target, {
+      center: point,
+      zoom: 14
     });
+
+    console.log(#{@damage.description});
+    //マーカー
+    var marker = new google.maps.Marker({
+      position: point,
+      map: map,
+      title: "#{@damage.title}",
+      icon: ( desc.indexOf('現地確認未了') != -1 ) ? "http://maps.google.com/mapfiles/ms/micons/red-dot.png" : "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
+    });
+
+  }
+
+
+script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD8_DF2AUAtXfZVcQYFUi3T3AslQKAXaw&callback=initMap"
+
+
+
+
+
+
+
+
+    // handler = Gmaps.build('Google');
+    // handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    //   markers = handler.addMarkers(#{raw @hash.to_json});
+    //   handler.bounds.extendWith(markers);
+    //   handler.fitMapToBounds();
+    //   handler.getMap().setZoom(14);
+    // });

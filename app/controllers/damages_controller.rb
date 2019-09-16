@@ -1,6 +1,5 @@
 class DamagesController < ApplicationController
-  # before_action:
-  # require 'exifr'
+  before_action :authenticate_user!
 
   def index
     @damages = Damage.all
@@ -18,12 +17,6 @@ class DamagesController < ApplicationController
   end
 
   def create
-
-    # 投稿画像のexif情報からから緯度・経度を取得してDBに登録する事を試みるも、一旦断念し保留。
-    # require 'exifr/jpeg'
-    # @exif = EXIFR::JPEG.new(damage_params[:image])
-    # @damage = Damage.new(damage_params.merge({latitude: @exif.gps_lat, longitude: @exif.gps_lng}))
-
     @damage = Damage.new(damage_params)
 
     if @damage.save
@@ -65,7 +58,7 @@ class DamagesController < ApplicationController
 
   private
     def damage_params
-      params.require(:damage).permit(:title, :place, :description, :amount, :image).merge(user_id: current_user.id)
+      params.require(:damage).permit(:title, :place, :latitude, :longitude, :description, :amount, :image).merge(user_id: current_user.id)
     end
 
 end

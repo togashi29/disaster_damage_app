@@ -22,6 +22,8 @@ ja:
         id: ID
         title: 題名
         place: 場所
+        latitude: 緯度
+        longitude: 経度
         description: 内容
         image: 写真
         amount: 被害額（円）

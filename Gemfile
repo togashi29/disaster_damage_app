@@ -73,7 +73,6 @@ gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 
-gem 'exifr'
 gem 'gmaps4rails'
 
 gem 'ransack'

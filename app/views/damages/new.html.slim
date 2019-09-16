@@ -1,41 +1,21 @@
 .page-title 被害の新規登録
 
-
-/ = render partial: 'form', locals: { damage: @damage}
-
-
-
-
-
-
-
-
-
-
-
 = form_with model: @damage, local: true do |f|
+  = render 'layouts/error_messages', model: f.object
   .form-group
   = f.label :title, '題名'
   = f.text_field :title, class: 'form-control'
   .form-group
   = f.label :place, '場所'
   = f.text_field :place, class: 'form-control'
-
-
-
   .form-group
   = f.label :latitude, '緯度'
   = f.text_field :latitude, class: 'form-control', id: 'latitude'
   .form-group
   = f.label :longitude, '経度'
   = f.text_field :longitude, class: 'form-control', id: 'longitude'
-
-  button onclick="geoFindMe()" type="button"  緯度・経度情報を取得
-
-
-
-
-
+  button.mt-2.mr-3 onclick="geoFindMe()" type="button"  緯度・経度情報を取得
+  = link_to 'Google Mapで探す', 'https://www.google.co.jp/maps', target: '_blank', class: 'googlemap'
   .form-group
   = f.label :description, '内容'
   = f.text_area :description, rows: 10, class: 'form-control'
