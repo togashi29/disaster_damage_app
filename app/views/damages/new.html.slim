@@ -14,8 +14,8 @@
   .form-group
   = f.label :longitude, '経度'
   = f.text_field :longitude, class: 'form-control', id: 'longitude'
-  button.mt-2.mr-3 onclick="geoFindMe()" type="button"  緯度・経度情報を取得
-  = link_to 'Google Mapで探す', 'https://www.google.co.jp/maps', target: '_blank', class: 'googlemap'
+  button.mt-2.mr-3 onclick="geoFindMe()" type="button"  現在地の緯度・経度情報を取得
+  p ※ページ下部のマップをクリックして緯度・経度情報を取得することもできます
   .form-group
   = f.label :description, '内容'
   = f.text_area :description, rows: 10, class: 'form-control'
@@ -26,3 +26,61 @@
   = f.label :image, '写真'
   = f.file_field :image, class: 'form-control'
   = f.submit class: 'btn btn-primary mt-3'
+
+
+#map.mb-5.mt-5
+javascript:
+  // APIライブラリの読み込みが終わったら実行する関数を指定
+  function initMap() {
+  // idがmapのdiv要素オブジェクトを取得
+    var target = document.getElementById('map');
+    // 中央に表示する座標（羽黒町役場）
+    var center = {lat: 38.719072,lng: 139.901329}
+
+    // マップを描画
+    map = new google.maps.Map(
+      // 描画する領域のオブジェクトを指定
+      target, {
+      // 描画に関するオプション
+      center: center,
+      zoom: 13
+      }
+    );
+
+    // マーカーの定義
+    var marker = new google.maps.Marker({
+      // 表示オプション（positionの中身は空）
+      position: new google.maps.LatLng(),
+      map: map,
+      icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
+    });
+
+    // クリックイベント
+    map.addListener('click', function(e){
+      getClickLatLng(e.latLng);
+    });
+
+    // イベントの内容
+    function getClickLatLng(lat_lng){
+      // 緯度・経度情報を取得
+      var lat = lat_lng.lat();
+      var lng = lat_lng.lng();
+
+      // 緯度・経度情報を、views/damages/new.html.slimの緯度・経度欄へ入力
+      document.getElementById( "latitude" ).value = lat ;
+      document.getElementById( "longitude" ).value = lng ;
+
+      // マーカーの表示の削除
+      marker.setMap(null);
+
+      // マーカーの位置情報を更新
+      marker.position = new google.maps.LatLng(lat, lng);
+
+      // マーカーの表示
+      marker.setMap(map);
+
+    }
+  }
+
+
+script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD8_DF2AUAtXfZVcQYFUi3T3AslQKAXaw&callback=initMap"

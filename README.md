@@ -1,24 +1,23 @@
-# README
+**農災App**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 概要
+災害発生時に、行政職員が農業関連の被害情報を記録及び共有するためのアプリケーションです。
 
-Things you may want to cover:
+# 機能
+被害情報の登録、閲覧、編集、削除
+ユーザー情報の登録、閲覧、編集、削除
 
-* Ruby version
+# 実行環境
+- Ruby version:2.5.1
+- Rails version:5.2.3
+- heroku
+- AWS S3
 
-* System dependencies
+# その他
+以下を使用
+- Geolocation API
+- Google Maps API
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ゲストユーザー
+mail:guest@guest.com
+pass:guest01

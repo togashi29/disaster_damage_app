@@ -4,13 +4,13 @@
   = bootstrap_devise_error_messages!
   .form-group
     = f.label :department
-    = f.email_field :department, autofocus: true, autocomplete: 'email', class: 'form-control'
+    = f.text_field :department, autofocus: true, autocomplete: 'off', class: 'form-control'
   .form-group
     = f.label :position
-    = f.email_field :position, autofocus: true, autocomplete: 'email', class: 'form-control'
+    = f.text_field :position, autofocus: true, autocomplete: 'off', class: 'form-control'
   .form-group
     = f.label :name
-    = f.email_field :name, autofocus: true, autocomplete: 'email', class: 'form-control'
+    = f.text_field :name, autofocus: true, autocomplete: 'off', class: 'form-control'
   .form-group
     = f.label :email
     = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'

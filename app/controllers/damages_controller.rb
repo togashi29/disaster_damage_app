@@ -3,11 +3,6 @@ class DamagesController < ApplicationController
 
   def index
     @damages = Damage.all
-    @hash = Gmaps4rails.build_markers(@damages) do |place, marker|
-      marker.lat place.latitude
-      marker.lng place.longitude
-      marker.infowindow place.title
-    end
     @total_amount = Damage.sum(:amount)
     @total_place = Damage.count(:place)
   end
@@ -29,11 +24,6 @@ class DamagesController < ApplicationController
 
   def show
     @damage = Damage.find(params[:id])
-    @hash = Gmaps4rails.build_markers(@damage) do |place, marker|
-      marker.lat place.latitude
-      marker.lng place.longitude
-      marker.infowindow place.title
-    end
   end
 
   def edit

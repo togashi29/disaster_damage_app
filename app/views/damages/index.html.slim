@@ -34,11 +34,44 @@ table.table.table-hover.index-table
 
 
 
-#map
-  javascript:
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(#{raw @hash.to_json});
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
+#map.mb-5
+javascript:
+  // APIライブラリの読み込みが終わったら実行する関数を指定
+  function initMap() {
+    // javascriptうちでは - @damages.each do |damage| という方法は使用不可のため、JSONに変換
+    var damages = #{raw @damages.to_json};
+    // idがmapのdiv要素オブジェクトを取得
+    var target = document.getElementById('map');
+    // 中央に表示する座標
+    var center = {lat: 38.698953,lng: 139.925736}
+
+    // マップを描画
+    map = new google.maps.Map(
+      // 描画する領域のオブジェクトを指定
+      target, {
+      // 描画に関するオプション
+      center: center,
+      zoom: 13
     });
+
+    var marker, i;
+    for (let i = 0; i < damages.length; i++) {
+
+      // マーカーを表示
+      marker = new google.maps.Marker({
+        // 表示オプション
+        position: new google.maps.LatLng(damages[i].latitude, damages[i].longitude),
+        map: map,
+        title: damages[i].title,
+        icon: ( damages[i].description.indexOf('現地確認未了') == -1 ) ? "http://maps.google.com/mapfiles/ms/micons/red-dot.png" : "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
+      });
+
+      // マーカーのクリックイベント
+      marker.addListener('click', function(){
+        // 当該マーカーのshow.html.slimにリンク
+        location.href = 'damages/' + damages[i].id;
+      });
+   }
+  }
+
+script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD8_DF2AUAtXfZVcQYFUi3T3AslQKAXaw&callback=initMap"

@@ -34,11 +34,8 @@ table.table.table-hover
 //   console.log(#{@damage.description});
 
 
-#map
-
+#map.mb-5
 javascript:
-  var map;
-  let desc = #{@damage.description};
   function initMap() {
     var target = document.getElementById('map');
     // 表示したいポイント
@@ -49,13 +46,12 @@ javascript:
       zoom: 14
     });
 
-    console.log(#{@damage.description});
     //マーカー
     var marker = new google.maps.Marker({
       position: point,
       map: map,
       title: "#{@damage.title}",
-      icon: ( desc.indexOf('現地確認未了') != -1 ) ? "http://maps.google.com/mapfiles/ms/micons/red-dot.png" : "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
+      icon: ( "#{@damage.description}".indexOf('現地確認未了') == -1 ) ? "http://maps.google.com/mapfiles/ms/micons/red-dot.png" : "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
     });
 
   }
