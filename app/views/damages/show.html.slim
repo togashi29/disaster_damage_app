@@ -29,9 +29,6 @@ table.table.table-hover
   = link_to '削除', @damage, method: :delete, data: { confirm: "タスク「#{@damage.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
 
-// javascript:
-//   console.log('こんにちは');
-//   console.log(#{@damage.description});
 
 
 #map.mb-5
@@ -58,18 +55,3 @@ javascript:
 
 
 script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD8_DF2AUAtXfZVcQYFUi3T3AslQKAXaw&callback=initMap"
-
-
-
-
-
-
-
-
-    // handler = Gmaps.build('Google');
-    // handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    //   markers = handler.addMarkers(#{raw @hash.to_json});
-    //   handler.bounds.extendWith(markers);
-    //   handler.fitMapToBounds();
-    //   handler.getMap().setZoom(14);
-    // });
