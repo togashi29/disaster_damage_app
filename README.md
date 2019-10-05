@@ -18,7 +18,3 @@
 以下を使用
 - Geolocation API
 - Google Maps API
-
-ゲストユーザー
-mail:guest@guest.com
-pass:guest01
